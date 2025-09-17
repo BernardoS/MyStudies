@@ -16,7 +16,7 @@ app.MapGet("/", () =>
 
 app.MapPost("/", (string nome) =>
 {
-    return Results.Ok();
+    return Results.Ok($"Retornando o nome enviado via parâmetro:{nome}");
 });
 
 app.Run();
