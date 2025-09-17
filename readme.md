@@ -18,4 +18,13 @@ Esta seção serve como consulta para entender quais comandos foram executados p
    
 `dotnet new web -o MyStudies`
 
+## Execução do projeto
+
+Esta seção serve como consulta para entender quais passos são necessários para executar o projeto.
+
+
+Comando para executar o projeto:
+
+`dotnet run`
+
 
