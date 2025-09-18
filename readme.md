@@ -1,5 +1,7 @@
 # My Studies
 
+![capa do projeto](/repository-cover.png)
+
 Projeto básico para registrar estudos avulsos e conseguir manipulá-los.
 
 ---
