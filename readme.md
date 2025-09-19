@@ -19,6 +19,28 @@ Esta seção serve como consulta para entender quais comandos foram executados p
    
 `dotnet new web -o MyStudies`
 
+2 - Instalação do Entity Framework e ferramentas auxiliares
+
+`dotnet add package Microsoft.EntityFrameworkCore --version 7.0.0`
+`dotnet add package Microsoft.EntityFrameworkCore.Tools --version 7.0.0`
+`dotnet add package Microsoft.EntityFrameworkCore.Sqlite --version 7.0.0`
+
+3 -  Após a configuração executei um build
+
+`dotnet build`
+
+4 - Executar a primeira `migration` do EntityFramework
+
+`dotnet ef migrations add InitialCreate`
+
+OBS.: Tive que instalar a ferramenta de execução do entity antes de executar o comando, utilizei o comando abaixo para instalar:
+
+`dotnet tool install --global dotnet-ef`
+
+5 - Criando o banco de dados
+
+`dotnet ef database update`
+
 ## Execução do projeto
 
 Esta seção serve como consulta para entender quais passos são necessários para executar o projeto.
