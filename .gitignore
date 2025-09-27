@@ -39,6 +39,7 @@ StyleCopReport.xml
 *.pdb
 *.cache
 *.ide
+*.db
 
 # Rider
 .idea/
