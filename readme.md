@@ -51,3 +51,9 @@ Comando para executar o projeto:
 `dotnet run`
 
 
+## Banco de dados
+
+As tabelas do banco de dados são:
+
+- Subjects (Id, Name, Descrption);
+  - Exemplo de insert: `INSERT INTO Subjects (Name, Description) VALUES ("","");`
