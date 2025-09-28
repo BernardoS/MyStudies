@@ -1,7 +1,6 @@
 using System.Collections.Generic    ;
 using Microsoft.EntityFrameworkCore;
 using MyStudies.Data;
-using MyStudies.Controller;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,8 +8,10 @@ builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlite("Data S
 
 var app = builder.Build();
 
-SubjectsController.MapSubjectRoutes(app);
-
+app.MapGet("/subjects", (AppDbContext database) =>
+{
+    return database.Subjects.ToList();
+});
 
 app.Run();
                                                                                                        
