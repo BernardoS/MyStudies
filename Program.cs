@@ -15,7 +15,12 @@ app.MapGet("/subjects", async (AppDbContext database) =>
     return subjects;
 });
 
+app.MapGet("/subjects/{id}", async (int id ,AppDbContext database) =>
+{
+    var subject = await database.Subjects.FindAsync(id);
 
+    return subject is not null ? Results.Ok(subject) : Results.NoContent();
+});
 
 
 app.Run();
