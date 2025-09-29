@@ -8,10 +8,15 @@ builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlite("Data S
 
 var app = builder.Build();
 
-app.MapGet("/subjects", (AppDbContext database) =>
+app.MapGet("/subjects", async (AppDbContext database) =>
 {
-    return database.Subjects.ToList();
+    var subjects = await database.Subjects.ToListAsync();
+
+    return subjects;
 });
+
+
+
 
 app.Run();
                                                                                                        
