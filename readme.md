@@ -21,9 +21,12 @@ Esta seção serve como consulta para entender quais comandos foram executados p
 
 2 - Instalação do Entity Framework e ferramentas auxiliares
 
-`dotnet add package Microsoft.EntityFrameworkCore --version 7.0.0`
-`dotnet add package Microsoft.EntityFrameworkCore.Tools --version 7.0.0`
-`dotnet add package Microsoft.EntityFrameworkCore.Sqlite --version 7.0.0`
+```
+dotnet add package Microsoft.EntityFrameworkCore --version 7.0.0
+dotnet add package Microsoft.EntityFrameworkCore.Tools --version 7.0.0
+dotnet add package Microsoft.EntityFrameworkCore.Sqlite --version 7.0.0
+```
+
 
 3 -  Após a configuração executei um build
 
@@ -51,3 +54,9 @@ Comando para executar o projeto:
 `dotnet run`
 
 
+## Banco de dados
+
+As tabelas do banco de dados são:
+
+- Subjects (Id, Name, Descrption);
+  - Exemplo de insert: `INSERT INTO Subjects (Name, Description) VALUES ("","");`
