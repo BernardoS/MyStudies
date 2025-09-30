@@ -70,8 +70,20 @@ Comando para executar o projeto:
 
 As tabelas do banco de dados são:
 
-- Subjects (Id, Name, Descrption);
-  - Exemplo de insert: `INSERT INTO Subjects (Name, Description) VALUES ("","");`
+#### `Subjects` (Id, Name, Descrption);
+  - Descrição: Esta tabela armazenará os diversos assuntos que podem ser associados a um estudo.
+  - Exemplo de INSERT: `INSERT INTO Subjects (Name, Description) VALUES ("","");`
+
+####  `Studies` (Id, Title, Descrption, Content, CreatedAt, UpdatedAt);
+   - Descrição: Esta tabela armazenará os textos de cada estudo realizado, e vai poder ser associada ao assunto através da tabela `StudiesSubjects`.
+   - Exemplo de INSERT: `INSERT INTO Studies (Title, Descrption, Content, CreatedAt, UpdatedAt) VALUES ("","","",date('now'),date('now'));`
+
+#### `StudiesSubjects` (Id, SubjectId, StudyId);
+  - Descrição: Esta tabela irá armazenar o relacionamento entre diversos assuntos e diversos estudos.
+  - Exemplo de INSERT: `INSERT INTO Subjects (SubjectId, StudyId) VALUES (1,1);`
+#### `FlashCard` (Id, Question, Answer, StudyId, reatedAt, UpdatedAt);
+  - Descrição: Esta tabela irá armazenar os flash cards utilizados para revisão de um estudo.
+  - Exemplo de INSERT: `IINSERT INTO FlashCard (Question, Answer, StudyId, CreatedAt, UpdatedAt) VALUES ("","",1,date('now'),date('now'));`
 
 ### Diagrama de entidades e relacionamentos
 
