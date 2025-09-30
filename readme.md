@@ -14,8 +14,9 @@ O propósito deste projeto é aprender e explorar um pouco das Minimal APIs do .
 #### `Subjects`
 
 - `GET /subjects`: Recupera todos os assuntos.
-- `GET /subjects/{id}`: Recupera um assunto específicode acordo com o seu `Id`.
+- `GET /subjects/{id}`: Recupera um assunto específico de acordo com o seu `Id`.
 - `POST /subject`: Insere um novo assunto.
+- `PUT /subjects/{id}`: Atualiza um assunto específico de acordo com o seu `Id`.
 
 ## Construção do projeto
 
