@@ -60,3 +60,11 @@ As tabelas do banco de dados são:
 
 - Subjects (Id, Name, Descrption);
   - Exemplo de insert: `INSERT INTO Subjects (Name, Description) VALUES ("","");`
+
+### Diagrama de entidades e relacionamentos
+
+Neste diagrama podemos ver todas as tabelas que compõem o sistema e como estão relacionadas entre si.
+
+![alt text](image.png)
+
+OBS.: Diagrama desenvolvido utilizando o SqlDBM: https://sqldbm.com/
