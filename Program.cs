@@ -23,14 +23,39 @@ app.MapGet("/subjects/{id}", async (int id, AppDbContext database) =>
     return subject is not null ? Results.Ok(subject) : Results.NoContent();
 });
 
-app.MapPost("/subjects/", async (Subject subject ,AppDbContext database) =>
+app.MapPost("/subjects", async (Subject subject, AppDbContext database) =>
 {
     database.Subjects.Add(subject);
+
     await database.SaveChangesAsync();
 
     string message = "O assunto foi criado com sucesso.";
 
-    return Results.Created("/subjects",new
+    return Results.Created("/subjects", new
+    {
+        message,
+        subject
+    });
+});
+
+app.MapPut("/subjects/{id}", async (int id,Subject updatedSubject , AppDbContext database) =>
+{
+    var subject = await database.Subjects.FindAsync(id);
+
+    if (subject == null)
+    {
+        return Results.BadRequest("Não foi encontrado nenhum assunto com este id");
+    }
+
+    updatedSubject.Id = id;
+
+    subject = updatedSubject;
+
+    await database.SaveChangesAsync();
+
+    var message = "O assunto foi atualizado com sucesso.";
+
+    return Results.Ok(new
     {
         message,
         subject
