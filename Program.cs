@@ -44,7 +44,12 @@ app.MapPut("/subjects/{id}", async (int id,Subject updatedSubject , AppDbContext
 
     if (subject == null)
     {
-        return Results.BadRequest("Não foi encontrado nenhum assunto com este id");
+        var errorMessage = "Não foi encontrado nenhum assunto com este id";
+
+        return Results.BadRequest(new
+        {
+            message = errorMessage
+        });
     }
 
     updatedSubject.Id = id;
@@ -59,6 +64,30 @@ app.MapPut("/subjects/{id}", async (int id,Subject updatedSubject , AppDbContext
     {
         message,
         subject
+    });
+});
+
+app.MapDelete("/subjects/{id}", async (int id,AppDbContext database) =>
+{
+    var subject = await database.Subjects.FindAsync(id);
+
+    if (subject == null)
+    {
+        var errorMessage = "Não foi encontrado nenhum assunto com este id";
+
+        return Results.BadRequest(new
+        {
+            message = errorMessage
+        });
+    }
+
+    database.Subjects.Remove(subject);
+
+    var message = "O assunto foi removido com sucesso.";
+
+    return Results.Ok(new
+    {
+        message
     });
 });
 
