@@ -52,6 +52,10 @@ OBS.: Tive que instalar a ferramenta de execução do entity antes de executar o
 
 `dotnet ef database update`
 
+6 - Instalando o Swagger no projeto
+
+`dotnet add package Swashbuckle.AspNetCore --version 7.0.0`
+
 ## Execução do projeto
 
 Esta seção serve como consulta para entender quais passos são necessários para executar o projeto.
