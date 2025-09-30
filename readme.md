@@ -9,6 +9,13 @@ Projeto básico para registrar estudos avulsos e conseguir manipulá-los.
 
 O propósito deste projeto é aprender e explorar um pouco das Minimal APIs do .NET.
 
+## Rotas disponíveis
+
+#### `Subjects`
+
+- `GET /subjects`: Recupera todos os assuntos.
+- `GET /subjects/{id}`: Recupera um assunto específicode acordo com o seu `Id`.
+- `POST /subject`: Insere um novo assunto.
 
 ## Construção do projeto
 
@@ -26,7 +33,6 @@ dotnet add package Microsoft.EntityFrameworkCore --version 7.0.0
 dotnet add package Microsoft.EntityFrameworkCore.Tools --version 7.0.0
 dotnet add package Microsoft.EntityFrameworkCore.Sqlite --version 7.0.0
 ```
-
 
 3 -  Após a configuração executei um build
 
