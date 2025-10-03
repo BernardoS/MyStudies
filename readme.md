@@ -56,6 +56,14 @@ OBS.: Tive que instalar a ferramenta de execução do entity antes de executar o
 
 `dotnet add package Swashbuckle.AspNetCore --version 7.0.0`
 
+7 - Adicionando novas *migrations*
+
+`dotnet ef migrations add IncludeStudyEntity`
+
+8 - Removendo novas *migrations*
+
+`dotnet ef migrations remove`
+
 ## Execução do projeto
 
 Esta seção serve como consulta para entender quais passos são necessários para executar o projeto.

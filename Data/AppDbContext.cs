@@ -13,5 +13,8 @@ namespace MyStudies.Data
 
         // Aqui é onde transformamos nosso objeto Subject em uma tabela
         public DbSet<Subject> Subjects => Set<Subject>();
+
+        /// Aqui é onde transformamos nosso objeto Subject em uma tabela
+        public DbSet<Study> Studies => Set<Study>();
     }
 }
