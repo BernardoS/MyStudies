@@ -21,5 +21,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.MapSubjectRoutes();
+app.MapStudyRoutes();
 
 app.Run();
