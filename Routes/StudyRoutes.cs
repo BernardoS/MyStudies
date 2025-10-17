@@ -4,7 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using MyStudies.Data;
 using MyStudies.Model;
-using MyStudies.Model.Request;
+using MyStudies.Model.DTOs.Request;
+using MyStudies.Model.DTOs.Response;
+using MyStudies.Model.Entities;
 
 namespace MyStudies.Routes
 {
@@ -43,10 +45,12 @@ namespace MyStudies.Routes
 
                 string message = "O estudo foi criado com sucesso.";
 
+                var studyResponse = new CreateStudyResponse(study);
+
                 return Results.Created("/studies", new
                 {
                     message,
-                    study
+                    studyResponse
                 });
             });
 

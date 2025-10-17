@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MyStudies.Model
+namespace MyStudies.Model.Entities
 {
     public class Study
     {

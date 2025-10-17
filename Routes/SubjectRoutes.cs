@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using MyStudies.Data;
 using MyStudies.Model;
+using MyStudies.Model.Entities;
 
 namespace MyStudies.Routes
 {

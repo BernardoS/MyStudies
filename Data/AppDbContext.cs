@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using MyStudies.Model;
+using MyStudies.Model.Entities;
 
 namespace MyStudies.Data
 {
