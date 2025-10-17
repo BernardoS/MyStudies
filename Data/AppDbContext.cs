@@ -16,5 +16,8 @@ namespace MyStudies.Data
 
         /// Aqui é onde transformamos nosso objeto Subject em uma tabela
         public DbSet<Study> Studies => Set<Study>();
+
+        /// Aqui é onde transformamos nosso objeto FlashCard em uma tabela
+        public DbSet<FlashCard> FlashCards => Set<FlashCard>();
     }
 }
