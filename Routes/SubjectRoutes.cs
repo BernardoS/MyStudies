@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using MyStudies.Data;
 using MyStudies.Model;
+using MyStudies.Model.Entities;
 
 namespace MyStudies.Routes
 {
@@ -17,10 +18,10 @@ namespace MyStudies.Routes
             {
                 var subjects = await database.Subjects.ToListAsync();
 
-                return subjects;
+                return Results.Ok(subjects);
             });
 
-            app.MapGet("/subjects/{id}", async (int id, AppDbContext database) =>
+            app.MapGet("/subjects/{id}", async (AppDbContext database, int id) =>
             {
                 var subject = await database.Subjects.FindAsync(id);
 

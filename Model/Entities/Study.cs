@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MyStudies.Model
+namespace MyStudies.Model.Entities
 {
     public class Study
     {
@@ -13,7 +13,7 @@ namespace MyStudies.Model
         public string Content { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
-        public List<Subject>? Subjects { get; set; }
-        public List<FlashCard>? FlashCards { get; set; }
+        public List<Subject>? Subjects { get; set; } = new List<Subject>();
+        public List<FlashCard>? FlashCards { get; set; } = new List<FlashCard>();
     }
 }
