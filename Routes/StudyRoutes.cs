@@ -71,6 +71,31 @@ namespace MyStudies.Routes
                 });
             });
 
+            app.MapDelete("/studies/{id}", async (AppDbContext database, int id) =>
+            {
+                var study = await database.Studies.FindAsync(id);
+
+                if (study == null)
+                {
+                    var errorMessage = "Não foi encontrado nenhum assunto com este id";
+
+                    return Results.BadRequest(new
+                    {
+                        message = errorMessage
+                    });
+                }
+
+                database.Studies.Remove(study);
+
+                await database.SaveChangesAsync();
+
+                 var message = "O assunto foi removido com sucesso.";
+
+                return Results.Ok(new
+                {
+                    message
+                });
+            });
         }
                 
     }
