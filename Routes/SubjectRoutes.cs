@@ -18,10 +18,10 @@ namespace MyStudies.Routes
             {
                 var subjects = await database.Subjects.ToListAsync();
 
-                return subjects;
+                return Results.Ok(subjects);
             });
 
-            app.MapGet("/subjects/{id}", async (int id, AppDbContext database) =>
+            app.MapGet("/subjects/{id}", async (AppDbContext database, int id) =>
             {
                 var subject = await database.Subjects.FindAsync(id);
 

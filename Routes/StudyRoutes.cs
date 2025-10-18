@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using MyStudies.Data;
 using MyStudies.Model;
 using MyStudies.Model.DTOs.Request;
@@ -14,6 +15,22 @@ namespace MyStudies.Routes
     {
         public static void MapStudyRoutes(this WebApplication app)
         {
+            app.MapGet("/studies", async (AppDbContext database) =>
+            {
+                var studies = await database.Studies.Include(s => s.Subjects).ToListAsync();
+
+                return Results.Ok(studies);
+            });
+            
+            app.MapGet("/studies/{id}", async (AppDbContext database, int id) =>
+            {
+                var study = await database.Studies
+                .Include(s => s.Subjects)
+                .FirstOrDefaultAsync(s => s.Id == id);
+
+                return Results.Ok(study);
+            });
+
             app.MapPost("/studies", async (AppDbContext database, CreateStudyRequest studyRequest) =>
             {
                 var study = new Study()
