@@ -19,6 +19,14 @@ O propósito deste projeto é aprender e explorar um pouco das Minimal APIs do .
 - `PUT /subjects/{id}`: Atualiza um assunto específico de acordo com o seu `Id`.
 - `DELETE /subjects/{id}`: Remove um assunto específico de acordo com o seu `Id`.
 
+#### `Studies`
+
+- `GET /studies`: Recupera todos os estudos.
+- `GET /studies/{id}`: Recupera um estudo específico de acordo com o seu `Id`.
+- `POST /studies`: Insere um novo estudo.
+- `PUT /studies/{id}`: Atualiza um estudo específico de acordo com o seu `Id`.
+- `DELETE /studies/{id}`: Remove um estudo específico de acordo com o seu `Id`.
+
 ## Construção do projeto
 
 Esta seção serve como consulta para entender quais comandos foram executados para construir o projeto.
