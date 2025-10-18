@@ -21,7 +21,7 @@ namespace MyStudies.Routes
 
                 return Results.Ok(studies);
             });
-            
+
             app.MapGet("/studies/{id}", async (AppDbContext database, int id) =>
             {
                 var study = await database.Studies
@@ -30,6 +30,8 @@ namespace MyStudies.Routes
 
                 return Results.Ok(study);
             });
+
+
 
             app.MapPost("/studies", async (AppDbContext database, CreateStudyRequest studyRequest) =>
             {
@@ -70,6 +72,57 @@ namespace MyStudies.Routes
                     studyResponse
                 });
             });
+            
+            app.MapPut("/studies/{id}", async (AppDbContext database, int id, UpdateStudyRequest studyRequest) =>
+            {
+                var study = await database.Studies
+                .Include(s => s.Subjects)
+                .FirstOrDefaultAsync(s => s.Id == id);
+
+                if (study == null)
+                {
+                    var errorMessage = "Não foi encontrado nenhum estudo com este id";
+
+                    return Results.BadRequest(new
+                    {
+                        message = errorMessage
+                    });
+                }
+
+                study.Content = studyRequest.Content;
+                study.Title = studyRequest.Title;
+                study.Description = studyRequest.Description;
+
+                var subjectList = new List<Subject>();
+
+                if (studyRequest.SubjectsIds != null && studyRequest.SubjectsIds.Length > 0)
+                {
+                    foreach (var subjectId in studyRequest.SubjectsIds)
+                    {
+
+                        var subject = await database.Subjects.FindAsync(subjectId);
+
+                        if (subject != null)
+                        {
+                            subjectList.Add(subject);
+                        }
+                    }
+                }
+
+                study.Subjects = subjectList;
+
+                await database.SaveChangesAsync();
+
+                var message = "O estudo foi atualizado com sucesso.";
+
+                var studyResponse = new UpdateStudyResponse(study);
+
+                return Results.Ok(new
+                {
+                    message,
+                    studyResponse
+                });
+            });
 
             app.MapDelete("/studies/{id}", async (AppDbContext database, int id) =>
             {
@@ -77,7 +130,7 @@ namespace MyStudies.Routes
 
                 if (study == null)
                 {
-                    var errorMessage = "Não foi encontrado nenhum assunto com este id";
+                    var errorMessage = "Não foi encontrado nenhum estudo com este id";
 
                     return Results.BadRequest(new
                     {
@@ -89,7 +142,7 @@ namespace MyStudies.Routes
 
                 await database.SaveChangesAsync();
 
-                 var message = "O assunto foi removido com sucesso.";
+                 var message = "O estudo foi removido com sucesso.";
 
                 return Results.Ok(new
                 {
