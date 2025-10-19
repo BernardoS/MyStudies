@@ -146,7 +146,7 @@ namespace MyStudies.Routes
 
                 await database.SaveChangesAsync();
 
-                 var message = "O estudo foi removido com sucesso.";
+                var message = "O estudo foi removido com sucesso.";
 
                 return Results.Ok(new
                 {
