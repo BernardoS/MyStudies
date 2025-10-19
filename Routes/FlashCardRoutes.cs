@@ -84,7 +84,36 @@ namespace MyStudies.Routes
                     message,
                     card
                 });
-                
+
+            });
+
+            app.MapPut("/flash-cards/{id}", async (AppDbContext database,int id, FlashCard updatedCard) =>
+            {
+                var flashCard = await database.FlashCards.FindAsync(id);
+
+                if (flashCard == null)
+                {
+                    var errorMessage = "Não foi encontrado nenhum card com este id";
+
+                    return Results.BadRequest(new
+                    {
+                        message = errorMessage
+                    });
+                }
+
+                flashCard.Question = updatedCard.Question;
+                flashCard.Answer = updatedCard.Answer;
+                flashCard.UpdatedAt = DateTime.Now;
+
+                await database.SaveChangesAsync();
+
+                var message = "O card foi atualizado com sucesso.";
+
+                return Results.Ok(new
+                {
+                    message,
+                    card = flashCard
+                });
             });
         }
     }
