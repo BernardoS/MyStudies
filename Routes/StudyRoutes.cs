@@ -17,7 +17,10 @@ namespace MyStudies.Routes
         {
             app.MapGet("/studies", async (AppDbContext database) =>
             {
-                var studies = await database.Studies.Include(s => s.Subjects).ToListAsync();
+                var studies = await database.Studies
+                .Include(s => s.Subjects)
+                .Include(s => s.FlashCards)
+                .ToListAsync();
 
                 return Results.Ok(studies);
             });
@@ -26,6 +29,7 @@ namespace MyStudies.Routes
             {
                 var study = await database.Studies
                 .Include(s => s.Subjects)
+                .Include(s => s.FlashCards)
                 .FirstOrDefaultAsync(s => s.Id == id);
 
                 return Results.Ok(study);
@@ -142,7 +146,7 @@ namespace MyStudies.Routes
 
                 await database.SaveChangesAsync();
 
-                 var message = "O estudo foi removido com sucesso.";
+                var message = "O estudo foi removido com sucesso.";
 
                 return Results.Ok(new
                 {
