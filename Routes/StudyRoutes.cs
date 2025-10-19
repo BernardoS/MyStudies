@@ -17,7 +17,10 @@ namespace MyStudies.Routes
         {
             app.MapGet("/studies", async (AppDbContext database) =>
             {
-                var studies = await database.Studies.Include(s => s.Subjects).ToListAsync();
+                var studies = await database.Studies
+                .Include(s => s.Subjects)
+                .Include(s => s.FlashCards)
+                .ToListAsync();
 
                 return Results.Ok(studies);
             });

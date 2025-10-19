@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using MyStudies.Data;
 using MyStudies.Model.Entities;
 
@@ -11,6 +12,39 @@ namespace MyStudies.Routes
     {
         public static void MapFlashCardRoutes(this WebApplication app)
         {
+            app.MapGet("/flash-cards", async (AppDbContext database) =>
+            {
+                var flashCards = await database.FlashCards.ToListAsync();
+
+                return Results.Ok(new
+                {
+                    flashCards
+                });
+
+            });
+
+            app.MapGet("/flash-cards/{id}", async (AppDbContext database, int id) =>
+            {
+                var flashCard = await database.FlashCards.FindAsync(id);
+
+                return Results.Ok(new
+                {
+                    flashCard
+                });
+
+            });
+            
+            app.MapGet("/flash-cards/study/{id}", async (AppDbContext database, int id) =>
+            {
+                var flashCardsByStudy = database.FlashCards
+                .Where(f => f.StudyId == id)
+                .ToList();
+ 
+                return Results.Ok(flashCardsByStudy);
+                
+            });
+
+
             app.MapPost("/flash-cards", async (AppDbContext database, FlashCard card) =>
             {
 
