@@ -26,6 +26,7 @@ namespace MyStudies.Routes
             {
                 var study = await database.Studies
                 .Include(s => s.Subjects)
+                .Include(s => s.FlashCards)
                 .FirstOrDefaultAsync(s => s.Id == id);
 
                 return Results.Ok(study);
