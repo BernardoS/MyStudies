@@ -87,7 +87,7 @@ namespace MyStudies.Routes
 
             });
 
-            app.MapPut("/flash-cards/{id}", async (AppDbContext database,int id, FlashCard updatedCard) =>
+            app.MapPut("/flash-cards/{id}", async (AppDbContext database, int id, FlashCard updatedCard) =>
             {
                 var flashCard = await database.FlashCards.FindAsync(id);
 
@@ -113,6 +113,32 @@ namespace MyStudies.Routes
                 {
                     message,
                     card = flashCard
+                });
+            });
+
+            app.MapDelete("/flash-cards/{id}", async (AppDbContext database, int id) =>
+            {
+                var flashCard = await database.FlashCards.FindAsync(id);
+
+                if (flashCard == null)
+                {
+                    var errorMessage = "Não foi encontrado nenhum card com este id";
+
+                    return Results.BadRequest(new
+                    {
+                        message = errorMessage
+                    });
+                }
+
+                database.FlashCards.Remove(flashCard);
+
+                await database.SaveChangesAsync();
+
+                var message = "O card foi removido com sucesso.";
+
+                return Results.Ok(new
+                {
+                    message
                 });
             });
         }
