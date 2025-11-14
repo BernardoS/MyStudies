@@ -12,8 +12,18 @@ namespace MyStudies.Routes
     {
         public static void MapFlashCardRoutes(this WebApplication app)
         {
-            app.MapGet("/flash-cards", async (AppDbContext database) =>
+            app.MapGet("/flash-cards", async (AppDbContext database, int? studyId) =>
             {
+
+                if (studyId.HasValue)
+                {
+                     var flashCardsByStudy = database.FlashCards
+                    .Where(f => f.StudyId == studyId.Value)
+                    .ToList();
+ 
+                    return Results.Ok(flashCardsByStudy);
+                }
+
                 var flashCards = await database.FlashCards.ToListAsync();
 
                 return Results.Ok(new
@@ -33,17 +43,6 @@ namespace MyStudies.Routes
                 });
 
             });
-            
-            app.MapGet("/flash-cards/study/{id}", async (AppDbContext database, int id) =>
-            {
-                var flashCardsByStudy = database.FlashCards
-                .Where(f => f.StudyId == id)
-                .ToList();
- 
-                return Results.Ok(flashCardsByStudy);
-                
-            });
-
 
             app.MapPost("/flash-cards", async (AppDbContext database, FlashCard card) =>
             {
