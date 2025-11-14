@@ -29,9 +29,8 @@ O propósito deste projeto é aprender e explorar um pouco das Minimal APIs do .
 
 #### `FlashCards`
 
-- `GET /flash-cards`: Recupera todos os cards.
+- `GET /flash-cards?studyId={studyId}`: Recupera todos os cards e pode também recuperar todos os cards por estudo, caso o `studyId` seja passado como parâmetro
 - `GET /flash-cards/{id}`: Recupera um card específico de acordo com o seu `Id`.
-- `GET /flash-cards/study/{id}`: Recupera os cards vinculados a um estudo.
 - `POST /studies`: Insere um novo card.
 - `PUT /studies/{id}`: Atualiza um card específico de acordo com o seu `Id`.
 - `DELETE /studies/{id}`: Remove um card específico de acordo com o seu `Id`.
